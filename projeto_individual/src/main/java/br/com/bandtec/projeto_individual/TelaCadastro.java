@@ -54,10 +54,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         TfnomeCad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TfEmailCad = new javax.swing.JTextField();
-        Tfsenha1Cad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        TFsenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
@@ -91,8 +91,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3.setBounds(110, 150, 50, 30);
         jPanel1.add(TfEmailCad);
         TfEmailCad.setBounds(160, 150, 230, 30);
-        jPanel1.add(Tfsenha1Cad);
-        Tfsenha1Cad.setBounds(160, 190, 230, 30);
 
         jLabel4.setText("senha:");
         jPanel1.add(jLabel4);
@@ -105,7 +103,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 260, 100, 23);
+        jButton1.setBounds(220, 260, 100, 32);
 
         jButton2.setText("<--");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +113,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2);
         jButton2.setBounds(10, 260, 70, 30);
+        jPanel1.add(TFsenha);
+        TFsenha.setBounds(160, 190, 230, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 530, 300);
@@ -129,7 +129,7 @@ public class TelaCadastro extends javax.swing.JFrame {
          
         String nome = TfnomeCad.getText();
         String email = TfEmailCad.getText();
-        String senha = Tfsenha1Cad.getText();
+        String senha = TFsenha.getText();
         
        Integer a = jdbcTemplate.update(
         "insert into cadastro (nome,email,senha) values (?,?,?)",
@@ -195,9 +195,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField TFsenha;
     private javax.swing.JTextField TfEmailCad;
     private javax.swing.JTextField TfnomeCad;
-    private javax.swing.JTextField Tfsenha1Cad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

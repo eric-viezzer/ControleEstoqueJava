@@ -53,9 +53,9 @@ void conectarBanco() {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TfSenha = new javax.swing.JTextField();
         TfLogin = new javax.swing.JTextField();
         CKBadmin = new javax.swing.JCheckBox();
+        TFsenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -99,8 +99,6 @@ void conectarBanco() {
         jLabel3.setText("LOGIN:");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(120, 100, 50, 30);
-        jPanel1.add(TfSenha);
-        TfSenha.setBounds(170, 150, 200, 30);
         jPanel1.add(TfLogin);
         TfLogin.setBounds(170, 100, 200, 30);
 
@@ -108,6 +106,8 @@ void conectarBanco() {
         CKBadmin.setText("admin");
         jPanel1.add(CKBadmin);
         CKBadmin.setBounds(230, 190, 96, 24);
+        jPanel1.add(TFsenha);
+        TFsenha.setBounds(170, 150, 200, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 540, 300);
@@ -121,14 +121,14 @@ void conectarBanco() {
         conectarBanco();
         
         String email = TfLogin.getText();
-        String senha = TfSenha.getText();
+        String senha = TFsenha.getText();
         
         List<User> consultaUser = jdbcTemplate.query(
               "select * from cadastro where email = ? and senha = ?",
                 new BeanPropertyRowMapper(User.class),
                         email, senha);
         List<UserADM> consultaAdmin = jdbcTemplate.query(
-       "select * from cadastroADM where email = ? and senha = ?",
+              "select * from cadastroADM where email = ? and senha = ?",
               new BeanPropertyRowMapper(UserADM.class),
                      email, senha);
         if(!CKBadmin.isSelected()){
@@ -203,8 +203,8 @@ void conectarBanco() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CKBadmin;
+    private javax.swing.JPasswordField TFsenha;
     private javax.swing.JTextField TfLogin;
-    private javax.swing.JTextField TfSenha;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
