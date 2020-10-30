@@ -50,8 +50,9 @@ void conectarBanco() {
         jLabel6 = new javax.swing.JLabel();
         TFprecoProduto = new javax.swing.JTextField();
         BTlimpar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BTcadastrar = new javax.swing.JButton();
+        BTdeleletar = new javax.swing.JButton();
+        BTcadastrarADM = new javax.swing.JButton();
 
         timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
             public void onTime(java.awt.event.ActionEvent evt) {
@@ -95,14 +96,14 @@ void conectarBanco() {
             }
         });
         jPanel1.add(BTbusca);
-        BTbusca.setBounds(240, 70, 90, 23);
+        BTbusca.setBounds(240, 70, 90, 32);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Cadastrar itens ");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(10, 130, 100, 30);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(10, 110, 320, 10);
+        jSeparator1.setBounds(10, 110, 320, 2);
 
         jLabel3.setText("Nome");
         jPanel1.add(jLabel3);
@@ -129,20 +130,34 @@ void conectarBanco() {
             }
         });
         jPanel1.add(BTlimpar);
-        BTlimpar.setBounds(110, 400, 140, 23);
+        BTlimpar.setBounds(20, 400, 140, 32);
 
-        jButton3.setText("Cadastrar ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BTcadastrar.setText("Cadastrar ");
+        BTcadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BTcadastrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(20, 370, 140, 23);
+        jPanel1.add(BTcadastrar);
+        BTcadastrar.setBounds(20, 360, 140, 32);
 
-        jButton4.setText("Cadastrar ADM ");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(190, 370, 140, 23);
+        BTdeleletar.setText("Deletar produto");
+        BTdeleletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTdeleletarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BTdeleletar);
+        BTdeleletar.setBounds(190, 400, 140, 32);
+
+        BTcadastrarADM.setText("Cadastrar ADM ");
+        BTcadastrarADM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTcadastrarADMActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BTcadastrarADM);
+        BTcadastrarADM.setBounds(190, 360, 140, 32);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,23 +193,20 @@ void conectarBanco() {
         
         List<Produto> consultaProduto = jdbcTemplate.query(
               "select * from produto where nome = ?",
-                new BeanPropertyRowMapper(User.class),
+                new BeanPropertyRowMapper(Produto.class),
                         nome);
         if(consultaProduto.isEmpty()){
             TAresultado.setText("Produto não encontrado no estoque");
         }else{
             Produto registro = consultaProduto.get(0);
             TAresultado.setText(
-                    registro.getNome()+
-                    " | "
-                    +registro.getQuantidade()+
-                    " | "
-                    +registro.getPreco()
+                    registro.getNome()+" | quantidade: "
+                    +registro.getQuantidade()+" | preço: R$"+registro.getPreco()
             );
         }
     }//GEN-LAST:event_BTbuscaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BTcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcadastrarActionPerformed
         // TODO add your handling code here:
         conectarBanco();
         
@@ -204,7 +216,7 @@ void conectarBanco() {
         
         Integer a = jdbcTemplate.update(
         "insert into produto (nome,quantidade,preco) values (?,?,?)",
-                 nomeProduto , quantidadeProduto,precoProduto);
+                 nomeProduto , quantidadeProduto, precoProduto);
        Integer abc = a + 1;
         if(nomeProduto.isEmpty() || quantidadeProduto.isEmpty() || 
                 precoProduto.isEmpty()){
@@ -213,14 +225,41 @@ void conectarBanco() {
              JOptionPane.showMessageDialog
                 (null, "Cadastro realizado com sucesso ");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BTcadastrarActionPerformed
 
     private void BTlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTlimparActionPerformed
         // TODO add your handling code here:
         TFnomeProduto.setText("");
         TFprecoProduto.setText("");
         TFquantidadeProduto.setText("");
+        TFbusca.setText("");
+        TAresultado.setText("");
     }//GEN-LAST:event_BTlimparActionPerformed
+
+    private void BTcadastrarADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcadastrarADMActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroADM().setVisible(true);
+        
+    }//GEN-LAST:event_BTcadastrarADMActionPerformed
+
+    private void BTdeleletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTdeleletarActionPerformed
+        // TODO add your handling code here:
+        conectarBanco();
+        
+        String nome = JOptionPane.showInputDialog("NOME DO PRODUTO: ");
+        
+        Integer a = jdbcTemplate.update(
+        "delete from produto where nome = ?",
+                 nome);
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campo em branco!");
+        }else if(a > 0){
+            JOptionPane.showMessageDialog
+                (null, "produto deletado com sucesso");            
+        }else{
+            
+        }
+    }//GEN-LAST:event_BTdeleletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +298,9 @@ void conectarBanco() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTbusca;
+    private javax.swing.JButton BTcadastrar;
+    private javax.swing.JButton BTcadastrarADM;
+    private javax.swing.JButton BTdeleletar;
     private javax.swing.JButton BTlimpar;
     private javax.swing.JLabel LBhorario;
     private javax.swing.JTextArea TAresultado;
@@ -266,8 +308,6 @@ void conectarBanco() {
     private javax.swing.JTextField TFnomeProduto;
     private javax.swing.JTextField TFprecoProduto;
     private javax.swing.JTextField TFquantidadeProduto;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

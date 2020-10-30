@@ -2,8 +2,8 @@ package br.com.bandtec.projeto_individual;
 public class Produto {
     private Integer id;
     private String nome;
-    private Integer Quantidade;
-    private Double preco;
+    private String Quantidade;
+    private String preco;
 
     public Integer getId() {
         return id;
@@ -21,21 +21,21 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Integer getQuantidade() {
+    public String getQuantidade() {
         return Quantidade;
     }
 
-    public void setQuantidade(Integer Quantidade) {
+    public void setQuantidade(String Quantidade) {
         this.Quantidade = Quantidade;
     }
 
-    public Double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
-    
+
     
 }
