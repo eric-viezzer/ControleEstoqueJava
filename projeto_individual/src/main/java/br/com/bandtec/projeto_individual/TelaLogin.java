@@ -139,6 +139,9 @@ void conectarBanco() {
             User registro = consultaUser.get(0);
             JOptionPane.showMessageDialog
                 (null, "Bem vindo! "+registro.getNome());
+                
+                new TelaLogin().setVisible(false);
+                dispose();
             }
         }else{
         if (consultaAdmin.isEmpty()){

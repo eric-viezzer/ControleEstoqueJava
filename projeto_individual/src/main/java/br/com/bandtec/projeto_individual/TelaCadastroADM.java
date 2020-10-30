@@ -94,7 +94,8 @@ void conectarBanco() {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(443, 241));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TFemailADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFemailADMActionPerformed
