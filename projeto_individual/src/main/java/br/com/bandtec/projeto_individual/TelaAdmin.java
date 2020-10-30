@@ -53,6 +53,7 @@ void conectarBanco() {
         BTcadastrar = new javax.swing.JButton();
         BTdeleletar = new javax.swing.JButton();
         BTcadastrarADM = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
             public void onTime(java.awt.event.ActionEvent evt) {
@@ -96,7 +97,7 @@ void conectarBanco() {
             }
         });
         jPanel1.add(BTbusca);
-        BTbusca.setBounds(240, 70, 90, 32);
+        BTbusca.setBounds(230, 70, 100, 32);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Cadastrar itens ");
@@ -158,6 +159,15 @@ void conectarBanco() {
         });
         jPanel1.add(BTcadastrarADM);
         BTcadastrarADM.setBounds(190, 360, 140, 32);
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(10, 70, 110, 32);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,6 +271,13 @@ void conectarBanco() {
         }
     }//GEN-LAST:event_BTdeleletarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new TelaLogin().setVisible(true);
+        new TelaAdmin().setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +325,7 @@ void conectarBanco() {
     private javax.swing.JTextField TFnomeProduto;
     private javax.swing.JTextField TFprecoProduto;
     private javax.swing.JTextField TFquantidadeProduto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

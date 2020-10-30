@@ -105,7 +105,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(220, 260, 100, 32);
 
-        jButton2.setText("<--");
+        jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

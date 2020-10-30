@@ -20,6 +20,7 @@ public class TelaUser extends javax.swing.JFrame {
         timer1.start();
     }
 void conectarBanco() {
+    
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setUrl("jdbc:h2:file:./bancoCad");
@@ -36,14 +37,14 @@ void conectarBanco() {
         timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jPanel1 = new javax.swing.JPanel();
         LBhorario = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TAresultado = new javax.swing.JTextArea();
         TFbusca = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         BTbusca = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         BTlimpar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TAresultado = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
             public void onTime(java.awt.event.ActionEvent evt) {
@@ -66,13 +67,6 @@ void conectarBanco() {
         LBhorario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(LBhorario);
         LBhorario.setBounds(340, 400, 350, 30);
-
-        TAresultado.setColumns(20);
-        TAresultado.setRows(5);
-        jScrollPane1.setViewportView(TAresultado);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 10, 350, 380);
         jPanel1.add(TFbusca);
         TFbusca.setBounds(70, 10, 260, 30);
 
@@ -98,12 +92,23 @@ void conectarBanco() {
             }
         });
         jPanel1.add(BTlimpar);
-        BTlimpar.setBounds(100, 400, 150, 32);
+        BTlimpar.setBounds(170, 400, 150, 32);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/bandtec/projeto_individual/logo.jpg"))); // NOI18N
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(70, 150, 200, 200);
+        TAresultado.setColumns(20);
+        TAresultado.setRows(5);
+        jScrollPane2.setViewportView(TAresultado);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(340, 10, 350, 380);
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(10, 400, 140, 32);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,6 +163,13 @@ void conectarBanco() {
         TAresultado.setText("");
     }//GEN-LAST:event_BTlimparActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new TelaLogin().setVisible(true);
+        new TelaUser().setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,10 +212,10 @@ void conectarBanco() {
     private javax.swing.JLabel LBhorario;
     private javax.swing.JTextArea TAresultado;
     private javax.swing.JTextField TFbusca;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables

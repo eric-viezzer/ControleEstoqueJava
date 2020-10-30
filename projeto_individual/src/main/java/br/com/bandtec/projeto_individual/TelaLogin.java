@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class TelaLogin extends javax.swing.JFrame {
     
-        
+        TelaUser telauser = new TelaUser();
         private JdbcTemplate jdbcTemplate;
         
         
@@ -72,17 +72,17 @@ void conectarBanco() {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 240, 100, 32);
+        jButton1.setBounds(230, 250, 100, 32);
 
         jLabel4.setText("Ainda não possui cadastro?");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(190, 220, 160, 16);
+        jLabel4.setBounds(200, 220, 160, 16);
 
         jLabel1.setFont(new java.awt.Font("Liquidism part 2", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,7 +105,7 @@ void conectarBanco() {
         CKBadmin.setBackground(new java.awt.Color(204, 204, 255));
         CKBadmin.setText("admin");
         jPanel1.add(CKBadmin);
-        CKBadmin.setBounds(230, 190, 96, 24);
+        CKBadmin.setBounds(240, 190, 80, 24);
         jPanel1.add(TFsenha);
         TFsenha.setBounds(170, 150, 200, 30);
 
@@ -131,26 +131,28 @@ void conectarBanco() {
               "select * from cadastroADM where email = ? and senha = ?",
               new BeanPropertyRowMapper(UserADM.class),
                      email, senha);
+        
         if(!CKBadmin.isSelected()){
         if(consultaUser.isEmpty()){
             JOptionPane.showMessageDialog
         (null, "Usuario nao existe");
         }else{
             User registro = consultaUser.get(0);
-            JOptionPane.showMessageDialog
+                JOptionPane.showMessageDialog
                 (null, "Bem vindo! "+registro.getNome());
                 
+                telauser.setVisible(true);
                 new TelaLogin().setVisible(false);
                 dispose();
             }
         }else{
         if (consultaAdmin.isEmpty()){
             JOptionPane.showMessageDialog
-        (null, "Usuario nao existe");
+        (null, "Administrador nao encontrado");
         }else{
             UserADM registro = consultaAdmin.get(0);
             JOptionPane.showMessageDialog
-                (null, "Bem vindo administrador,  "+registro.getNome()+ "!!");
+                (null, "Bem vindo administrador,  "+registro.getNome()+ "!");
             new TelaAdmin().setVisible(true);
             new TelaLogin().setVisible(false);
             dispose();
