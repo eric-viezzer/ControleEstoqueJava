@@ -42,8 +42,9 @@ void conectarBanco() {
         jLabel2 = new javax.swing.JLabel();
         TFnomeADM = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        BTcadastrarADM = new javax.swing.JButton();
+        Cadastrar = new javax.swing.JButton();
         TFsenhaADM = new javax.swing.JPasswordField();
+        BTcadastrarADM1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,16 +73,25 @@ void conectarBanco() {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(80, 100, 50, 30);
 
-        BTcadastrarADM.setText("Cadastrar");
-        BTcadastrarADM.addActionListener(new java.awt.event.ActionListener() {
+        Cadastrar.setText("Cadastrar");
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTcadastrarADMActionPerformed(evt);
+                CadastrarActionPerformed(evt);
             }
         });
-        jPanel1.add(BTcadastrarADM);
-        BTcadastrarADM.setBounds(160, 150, 128, 32);
+        jPanel1.add(Cadastrar);
+        Cadastrar.setBounds(280, 170, 128, 23);
         jPanel1.add(TFsenhaADM);
         TFsenhaADM.setBounds(130, 100, 210, 30);
+
+        BTcadastrarADM1.setText("Voltar");
+        BTcadastrarADM1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTcadastrarADM1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BTcadastrarADM1);
+        BTcadastrarADM1.setBounds(20, 170, 128, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +112,7 @@ void conectarBanco() {
         // TODO add your handling code here:
     }//GEN-LAST:event_TFemailADMActionPerformed
 
-    private void BTcadastrarADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcadastrarADMActionPerformed
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         // TODO add your handling code here:
         conectarBanco();
         
@@ -126,7 +136,14 @@ void conectarBanco() {
         }else{
             
         }
-    }//GEN-LAST:event_BTcadastrarADMActionPerformed
+    }//GEN-LAST:event_CadastrarActionPerformed
+
+    private void BTcadastrarADM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcadastrarADM1ActionPerformed
+        // TODO add your handling code here:
+        new TelaAdmin().setVisible(true);
+        new TelaCadastroADM().setVisible(false);
+        dispose();
+    }//GEN-LAST:event_BTcadastrarADM1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +181,8 @@ void conectarBanco() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTcadastrarADM;
+    private javax.swing.JButton BTcadastrarADM1;
+    private javax.swing.JButton Cadastrar;
     private javax.swing.JTextField TFemailADM;
     private javax.swing.JTextField TFnomeADM;
     private javax.swing.JPasswordField TFsenhaADM;
