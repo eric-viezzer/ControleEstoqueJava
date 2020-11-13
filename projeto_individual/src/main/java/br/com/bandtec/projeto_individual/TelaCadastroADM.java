@@ -120,20 +120,19 @@ void conectarBanco() {
         String email = TFemailADM.getText();
         String senha = TFsenhaADM.getText();
         
-       Integer a = jdbcTemplate.update(
-        "insert into cadastroadm (nome,email,senha) values (?,?,?)",
-                 nome, email, senha);
-        
         if(email.isEmpty() || nome.isEmpty() || 
            senha.isEmpty()){
             JOptionPane.showMessageDialog(null, "Campos em branco!");
-        }else if(a > 0){
+        }else{
+                jdbcTemplate.update(
+        "insert into cadastroadm (nome,email,senha) values (?,?,?)",
+                 nome, email, senha);
+        
             JOptionPane.showMessageDialog
                 (null, "Cadastro realizado com sucesso ");
+            
             new TelaCadastroADM().setVisible(false);
             dispose();
-            
-        }else{
             
         }
     }//GEN-LAST:event_CadastrarActionPerformed
