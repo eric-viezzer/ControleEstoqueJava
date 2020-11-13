@@ -133,10 +133,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         
         if(email.isEmpty() || nome.isEmpty() || 
            senha.isEmpty()){
+            
             JOptionPane.showMessageDialog(null, "Campos em branco!");
+        
         }else{
             jdbcTemplate.update(
-        "insert into cadastro (nome,email,senha) values (?,?,?)",
+                    "insert into cadastro (nome,email,senha) values (?,?,?)",
                  nome, email, senha);
             JOptionPane.showMessageDialog
                 (null, "Cadastro realizado com sucesso ");
